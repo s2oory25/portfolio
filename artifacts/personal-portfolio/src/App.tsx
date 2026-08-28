@@ -50,10 +50,11 @@ const projects = [
   },
 ];
 
-const career = [
-  { year: '2022 — 현재', role: '프론트엔드 개발자', place: '스튜디오 프레임', detail: 'B2B SaaS의 첫 화면부터 운영 도구까지, 기획과 디자인 그리고 구현 사이를 오가며 일합니다.' },
-  { year: '2020 — 2022', role: 'UI 엔지니어', place: '레이어드 랩', detail: '서비스 초기 팀의 멤버로 합류해 디자인 시스템을 세우고 제품의 첫 사용자 경험을 만들었습니다.' },
-  { year: '2016 — 2020', role: '컴퓨터공학 전공', place: '서울 소재 대학', detail: '코드를 도구로, 관찰을 태도로 배웠습니다. 지금도 만들기 전 오래 들여다보는 편입니다.' },
+const timelineEntries = [
+  { date: '2026.08', kind: 'PROJECT', title: 'React Frontend Project', detail: 'React와 Vite를 활용한 웹 애플리케이션 제작' },
+  { date: '2026.07', kind: 'PROJECT', title: 'UI/UX Design Project', detail: 'Figma를 활용한 웹앱 UI/UX 기획 및 디자인' },
+  { date: '2026.07', kind: 'EDUCATION', title: 'Web Publishing', detail: 'HTML, CSS, JavaScript 기반 반응형 웹 제작' },
+  { date: '2022 — 현재', kind: 'CAREER', title: 'Frontend Developer', detail: '제품의 흐름을 설계하고 아이디어를 실제 화면으로 구현합니다.' },
 ];
 
 const notes = [
@@ -217,18 +218,22 @@ function Home() {
         </section>
 
         <section id="career" className="section career" aria-labelledby="career-title">
-          <div className="wrap career-grid">
-            <div className="career-intro reveal">
-              <span className="eyebrow">04 — PATH SO FAR</span>
-              <h2 id="career-title" className="section-heading">계속<br /><em>배우는 중.</em></h2>
-              <p>정답이 빠르게 바뀌는 세계에서, 만드는 사람의 호기심을 오래 지키려고 합니다.</p>
+          <div className="wrap timeline-layout">
+            <div className="timeline-intro reveal">
+              <span className="eyebrow">04 — TIMELINE</span>
+              <h2 id="career-title" className="section-heading">배우고,<br /><em>만들어 온 기록.</em></h2>
+              <p>교육에서 프로젝트와 경력까지, 새로운 것을 배우고 화면으로 완성해 온 흐름을 담았습니다.</p>
             </div>
             <div className="timeline reveal" style={{ transitionDelay: '120ms' }}>
-              {career.map((item, index) => (
-                <article className="timeline-item" key={item.year} data-testid={`row-career-${index}`}>
-                  <span className="timeline-year">{item.year}</span>
-                  <div><h3 className="timeline-role">{item.role}</h3><p className="timeline-place">{item.place}</p><p className="timeline-detail">{item.detail}</p></div>
-                  <span className="timeline-dot" />
+              {timelineEntries.map((item, index) => (
+                <article className="timeline-item" key={`${item.date}-${item.title}`} data-testid={`row-timeline-${index}`}>
+                  <time className="timeline-year" dateTime={item.date.replace(' — 현재', '')}>{item.date}</time>
+                  <span className="timeline-marker" aria-hidden="true" />
+                  <div className="timeline-card">
+                    <div className="timeline-card-top"><span className={`timeline-kind timeline-kind-${item.kind.toLowerCase()}`}>{item.kind}</span><span className="timeline-index">0{index + 1}</span></div>
+                    <h3 className="timeline-role">{item.title}</h3>
+                    <p className="timeline-detail">{item.detail}</p>
+                  </div>
                 </article>
               ))}
             </div>
