@@ -46,7 +46,7 @@ const projects = [
     description: '상품을 탐색하고 상세 정보를 확인할 수 있는 온라인 판매 갤러리 웹앱',
     visual: 'visual-two',
     large: false,
-    githubUrl: 'image-001125.vercel.app',
+    githubUrl: 'https://github.com/s2oory25/portfolio',
   },
 ];
 
