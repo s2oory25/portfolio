@@ -32,27 +32,21 @@ const skills = [
 const projects = [
   {
     id: '01',
-    title: '결의의 지도',
-    type: 'PRODUCT / 2024',
-    description: '흩어진 팀의 의사결정을 한 장의 흐름으로 정리한 협업 도구',
+    title: 'Caply',
+    type: 'WEB APP / 2026',
+    description: '모자 착용 경험을 기록하고 나에게 어울리는 모자를 탐색할 수 있는 웹앱',
     visual: 'visual-one',
     large: true,
+    githubUrl: 'https://github.com/s2oory25/portfolio',
   },
   {
     id: '02',
-    title: '모어 데이즈',
-    type: 'BRAND / 2023',
-    description: '매일의 기록을 가볍게 시작하게 만드는 리추얼 스튜디오',
+    title: '판매갤러리',
+    type: 'E-COMMERCE / 2026',
+    description: '상품을 탐색하고 상세 정보를 확인할 수 있는 온라인 판매 갤러리 웹앱',
     visual: 'visual-two',
     large: false,
-  },
-  {
-    id: '03',
-    title: '오프셋 리서치',
-    type: 'WEB / 2023',
-    description: '도시의 변화와 사람의 이동을 읽는 데이터 아카이브',
-    visual: 'visual-three',
-    large: false,
+    githubUrl: 'https://github.com/s2oory25/portfolio',
   },
 ];
 
@@ -202,18 +196,21 @@ function Home() {
           <div className="wrap">
             <div className="work-header reveal">
               <div><span className="eyebrow">03 — SELECTED WORK</span><h2 id="work-title" className="section-heading">만든 것들의<br /><em>일부.</em></h2></div>
-              <p>문제를 발견하는 일부터 마지막 픽셀을 다듬는 일까지. 프로젝트를 누르면 함께 만들 다음 장면으로 이어집니다.</p>
+              <p>문제를 발견하는 일부터 마지막 픽셀을 다듬는 일까지. 각 작업의 GitHub 버튼에서 구현을 확인할 수 있습니다.</p>
             </div>
             <div className="project-grid">
               {projects.map((project, index) => (
-                <a className={`project reveal ${project.large ? 'project-large' : ''}`} href="#contact" key={project.id} style={{ transitionDelay: `${index * 100}ms` }} data-testid={`card-project-${project.id}`}>
+                <article className={`project reveal ${project.large ? 'project-large' : ''}`} key={project.id} style={{ transitionDelay: `${index * 100}ms` }} data-testid={`card-project-${project.id}`}>
                   <div className={`project-visual ${project.visual}`}>
                     {project.visual === 'visual-one' && <div className="browser"><div className="browser-bar"><i /><i /><i /></div><div className="browser-content"><div className="fake-title" /><div className="fake-line" /><div className="fake-line" /><div className="fake-block" /></div></div>}
                     {project.visual === 'visual-two' && <div className="label-card">more days<br /><span className="serif">for the in-between</span></div>}
                   </div>
                   <div className="project-meta"><div><div className="project-title">{project.title}</div><div className="project-type">{project.type}</div></div><ArrowUpRight className="project-arrow" size={19} /></div>
                   <p className="project-description">{project.description}</p>
-                </a>
+                  <a className="project-github" href={project.githubUrl} target="_blank" rel="noreferrer" data-testid={`link-project-github-${project.id}`}>
+                    <Github size={14} /> GitHub에서 보기 <ArrowUpRight size={13} />
+                  </a>
+                </article>
               ))}
             </div>
           </div>
@@ -263,7 +260,7 @@ function Home() {
               <p>새로운 제품을 시작하거나, 이미 있는 서비스를 조금 더 명확하게 만들고 싶다면 편하게 이야기해주세요. 좋은 질문부터 함께 찾아보겠습니다.</p>
               <a className="contact-email" href="mailto:hello@seoa.dev" data-testid="link-contact-email">hello@seoa.dev <ArrowUpRight size={14} /></a>
               <div style={{ marginTop: 30, display: 'flex', gap: 10 }}>
-                <a className="button button-quiet" href="https://github.com" target="_blank" rel="noreferrer" data-testid="link-github"><Github size={15} /> GitHub</a>
+                <a className="button button-quiet" href="https://github.com/s2oory25" target="_blank" rel="noreferrer" data-testid="link-github"><Github size={15} /> GitHub</a>
                 <a className="button button-quiet" href="https://linkedin.com" target="_blank" rel="noreferrer" data-testid="link-linkedin"><Linkedin size={15} /> LinkedIn</a>
               </div>
             </div>

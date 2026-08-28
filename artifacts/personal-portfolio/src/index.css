@@ -210,11 +210,11 @@
 .work-section { background: hsl(var(--muted)); }
 .work-header { display: flex; justify-content: space-between; align-items: end; margin-bottom: 53px; }
 .work-header p { max-width: 290px; color: hsl(var(--muted-foreground)); font-size: 12px; line-height: 1.8; }
-.project-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 24px; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .project { display: block; text-decoration: none; color: hsl(var(--foreground)); }
-.project-large { grid-row: span 2; }
+.project-large { grid-row: auto; }
 .project-visual { position: relative; overflow: hidden; background: hsl(var(--primary)); min-height: 300px; border-radius: 19px; box-shadow: 0 10px 24px var(--elevate-1); }
-.project-large .project-visual { min-height: 568px; }
+.project-large .project-visual { min-height: 410px; }
 .project-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 45%, hsl(var(--accent) / .16)); transition: transform .6s ease; }
 .project:hover .project-visual::before { transform: scale(1.12) rotate(3deg); }
 .visual-one { background: #dce8ff; }
@@ -240,6 +240,10 @@
 .project-description { color: hsl(var(--muted-foreground)); font-size: 12px; line-height: 1.6; margin: 8px 0 0; }
 .project-arrow { color: hsl(var(--accent)); transition: transform .25s ease; }
 .project:hover .project-arrow { transform: translate(3px, -3px); }
+.project-github { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; color: hsl(var(--foreground)); font: 11px var(--app-font-mono); text-decoration: none; border-bottom: 1px solid hsl(var(--border)); padding-bottom: 5px; transition: color .2s ease, border-color .2s ease; }
+.project-github:hover { color: hsl(var(--accent)); border-color: hsl(var(--accent)); }
+.project-github svg:last-child { transition: transform .2s ease; }
+.project-github:hover svg:last-child { transform: translate(2px, -2px); }
 
 .career-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 115px; }
 .career-intro p { color: hsl(var(--muted-foreground)); font-size: 14px; line-height: 1.8; max-width: 290px; margin-top: 26px; }
