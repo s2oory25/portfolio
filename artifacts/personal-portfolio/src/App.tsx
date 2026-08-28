@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useState } from 'react';
-import { ArrowRight, ArrowUpRight, Github, Linkedin, Mail, MapPin, Menu, Plus, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Github, Mail, MapPin, Menu, Plus, X } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -54,13 +54,6 @@ const timelineEntries = [
   { date: '2026.08', kind: 'PROJECT', title: 'React Frontend Project', detail: 'React와 Vite를 활용한 웹 애플리케이션 제작' },
   { date: '2026.07', kind: 'PROJECT', title: 'UI/UX Design Project', detail: 'Figma를 활용한 웹앱 UI/UX 기획 및 디자인' },
   { date: '2026.07', kind: 'EDUCATION', title: 'Web Publishing', detail: 'HTML, CSS, JavaScript 기반 반응형 웹 제작' },
-  { date: '2022 — 현재', kind: 'CAREER', title: 'Frontend Developer', detail: '제품의 흐름을 설계하고 아이디어를 실제 화면으로 구현합니다.' },
-];
-
-const notes = [
-  { title: '인터페이스는 언제 설명을 멈춰야 하는가', tag: 'ESSAY · 06' },
-  { title: '작은 팀을 위한 디자인 시스템의 온도', tag: 'FIELD NOTE · 05' },
-  { title: '좋은 기본값에 관하여', tag: 'THOUGHTS · 04' },
 ];
 
 function useReveal() {
@@ -240,35 +233,38 @@ function Home() {
           </div>
         </section>
 
-        <section className="section learning" aria-labelledby="learning-title">
-          <div className="learning-shape" aria-hidden="true" />
-          <div className="wrap learning-grid">
-            <div className="learning-copy reveal">
-              <span className="eyebrow">05 — ALWAYS CURIOUS</span>
-              <h2 id="learning-title" className="section-heading">아직도<br /><em>궁금한 것들.</em></h2>
-              <p>읽고, 걷고, 대화하며 다음 프로젝트에 가져갈 질문을 모읍니다. 최근에 정리한 짧은 메모입니다.</p>
-            </div>
-            <div className="notes reveal" style={{ transitionDelay: '150ms' }}>
-              {notes.map((note, index) => (
-                <a className="note" href="#contact" key={note.tag} data-testid={`link-note-${index}`}>
-                  <div><div className="note-title">{note.title}</div><div className="note-tag">{note.tag}</div></div><ArrowUpRight size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="contact" className="contact" aria-labelledby="contact-title">
           <div className="wrap contact-inner reveal">
-            <div><span className="eyebrow">06 — SAY HELLO</span><h2 id="contact-title">같이 만들<br /><em>이야기</em>가 있나요?</h2></div>
-            <div className="contact-copy">
-              <p>새로운 제품을 시작하거나, 이미 있는 서비스를 조금 더 명확하게 만들고 싶다면 편하게 이야기해주세요. 좋은 질문부터 함께 찾아보겠습니다.</p>
-              <a className="contact-email" href="mailto:hello@seoa.dev" data-testid="link-contact-email">hello@seoa.dev <ArrowUpRight size={14} /></a>
-              <div style={{ marginTop: 30, display: 'flex', gap: 10 }}>
-                <a className="button button-quiet" href="https://github.com/s2oory25" target="_blank" rel="noreferrer" data-testid="link-github"><Github size={15} /> GitHub</a>
-                <a className="button button-quiet" href="https://linkedin.com" target="_blank" rel="noreferrer" data-testid="link-linkedin"><Linkedin size={15} /> LinkedIn</a>
+            <div className="contact-intro">
+              <span className="eyebrow">06 — SAY HELLO</span>
+              <h2 id="contact-title">같이 만들<br /><em>이야기</em>가 있나요?</h2>
+              <p className="contact-description">프로젝트와 협업에 관심이 있으시면 언제든지 연락해주세요.</p>
+              <div className="contact-links" aria-label="연락 정보">
+                <a className="contact-link" href="mailto:hello@seoa.dev" data-testid="link-contact-email">
+                  <span className="contact-label">Email</span><span>hello@seoa.dev</span><ArrowUpRight size={14} />
+                </a>
+                <a className="contact-link" href="https://github.com/s2oory25" target="_blank" rel="noreferrer" data-testid="link-contact-github">
+                  <span className="contact-label">GitHub</span><span>github.com/s2oory25</span><ArrowUpRight size={14} />
+                </a>
               </div>
             </div>
+            <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+              <div className="form-field">
+                <label htmlFor="contact-name">이름</label>
+                <input id="contact-name" name="name" type="text" placeholder="이름을 입력해주세요" autoComplete="name" />
+              </div>
+              <div className="form-field">
+                <label htmlFor="contact-email">이메일</label>
+                <input id="contact-email" name="email" type="email" placeholder="이메일을 입력해주세요" autoComplete="email" />
+              </div>
+              <div className="form-field">
+                <label htmlFor="contact-message">메시지</label>
+                <textarea id="contact-message" name="message" rows={5} placeholder="프로젝트에 대해 알려주세요" />
+              </div>
+              <button className="button button-primary contact-submit" type="submit">
+                메시지 보내기 <ArrowRight size={15} />
+              </button>
+            </form>
           </div>
         </section>
       </main>
